@@ -61,12 +61,10 @@ router.put("/:id", auth, async (req, res) => {
   try {
     let post = await Post.findById(req.params.id);
 
-    // Check If Post Exists
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });
     }
 
-    // Check If Post Belongs To User
     if (post.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "Not authorized" });
     }
@@ -90,17 +88,14 @@ router.delete("/:id", auth, async (req, res) => {
   try {
     let post = await Post.findById(req.params.id);
 
-    // Check If Post Exists
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });
     }
 
-    // Check If Post Belongs To User
     if (post.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "Not authorized" });
     }
 
-    // Delete Post
     await Post.findByIdAndRemove(req.params.id);
 
     res.json({ msg: "Post Deleted" });
