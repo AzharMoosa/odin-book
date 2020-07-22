@@ -55,17 +55,7 @@ router.post(
         },
       };
 
-      jwt.sign(
-        payload,
-        process.env.JWT_SECRET,
-        {
-          expiresIn: 31600000,
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
+      jwt.sign(payload, process.env.JWT_SECRET);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
