@@ -5,9 +5,6 @@ const postsRoute = require("./routes/posts");
 const connectDB = require("./config/db");
 const app = express();
 
-// Connect DB
-connectDB();
-
 app.get("/", (req, res) => {
   res.json({
     msg: "Welcome To Odin Book API",
