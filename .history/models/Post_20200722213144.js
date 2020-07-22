@@ -7,7 +7,6 @@ const PostSchema = mongoose.Schema({
   comments: [
     {
       text: { type: String },
-      user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
     },
   ],
 
