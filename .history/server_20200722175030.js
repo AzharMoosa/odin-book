@@ -1,7 +1,5 @@
 const express = require("express");
 const usersRoute = require("./routes/users");
-const authRoute = require("./routes/auth");
-const postsRoute = require("./routes/posts");
 const app = express();
 
 app.get("/", (req, res) => {
@@ -11,9 +9,6 @@ app.get("/", (req, res) => {
 });
 
 // Define Routes
-app.use("/api/users", usersRoute);
-app.use("/api/auth", authRoute);
-app.use("/api/posts", postsRoute);
 
 // Server Listen
 const PORT = process.env.PORT || 5000;

@@ -11,9 +11,7 @@ app.get("/", (req, res) => {
 });
 
 // Define Routes
-app.use("/api/users", usersRoute);
-app.use("/api/auth", authRoute);
-app.use("/api/posts", postsRoute);
+app.use("/api/users");
 
 // Server Listen
 const PORT = process.env.PORT || 5000;
