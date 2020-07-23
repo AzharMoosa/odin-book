@@ -1,7 +1,50 @@
-import React from "react";
+import React, { useContext, Fragment } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/auth/authContext";
 
 const Navbar = () => {
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated, logout } = authContext;
+
+  const onLogout = () => {
+    logout();
+  };
+
+  const authLinks = (
+    <Fragment>
+      <li className='nav-links'>
+        <Link to='/' className='nav-link'>
+          Home
+        </Link>
+      </li>
+      <li className='nav-links'>
+        <Link to='/profile' className='nav-link'>
+          Profile
+        </Link>
+      </li>
+      <li className='nav-links'>
+        <a href='#!' className='nav-link' onClick={onLogout}>
+          Logout
+        </a>
+      </li>
+    </Fragment>
+  );
+
+  const guestLinks = (
+    <Fragment>
+      <li className='nav-links'>
+        <Link to='/login' className='nav-link'>
+          Login
+        </Link>
+      </li>
+      <li className='nav-links'>
+        <Link to='/register' className='nav-link'>
+          Register
+        </Link>
+      </li>
+    </Fragment>
+  );
+
   return (
     <nav className='navbar bg-secondary'>
       <div className='navbar-container'>
@@ -53,17 +96,7 @@ const Navbar = () => {
           </svg>
           <h1 className='navbar-title'>Odin Book</h1>
         </div>
-
-        <ul>
-          <li className='nav-links'>
-            <Link to='/login' className='nav-link'>
-              Login
-            </Link>
-            <Link to='/register' className='nav-link'>
-              Register
-            </Link>
-          </li>
-        </ul>
+        <ul>{isAuthenticated ? authLinks : guestLinks}</ul>
       </div>
     </nav>
   );
