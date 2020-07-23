@@ -32,11 +32,15 @@ router.post(
     // Post Content Field Valid
     const { content } = req.body;
 
+    const user = await User.findById(req.user.id);
+    const author = user.name;
+
     try {
       // Create Post
       const newPost = new Post({
         content,
         user: req.user.id,
+        author: author,
       });
       const post = await newPost.save();
 
