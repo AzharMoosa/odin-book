@@ -23,7 +23,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li className='nav-links'>
-        <a href='#!' className='nav-link' onClick={onLogout}>
+        <a href='/#!' className='nav-link' onClick={onLogout}>
           Logout
         </a>
       </li>

@@ -47,7 +47,7 @@ const Login = (props) => {
       <div className='login-content'>
         <h1 className='login-title'>Login</h1>
         <form className='login-form' onSubmit={onSubmit}>
-          <div className='form-group'>
+          <div className='register-input'>
             <i className='fa fa-envelope icon'></i>
             <input
               className='input-field'
@@ -59,7 +59,7 @@ const Login = (props) => {
             />
           </div>
 
-          <div className='form-group'>
+          <div className='register-input'>
             <i className='fas fa-lock icon'></i>
             <input
               className='input-field'

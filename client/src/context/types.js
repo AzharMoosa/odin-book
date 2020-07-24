@@ -13,3 +13,6 @@ export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const POST_ERROR = "POST_ERROR";
+export const GET_USER = "GET_USER";
+export const UPDATE_USER = "UPDATE_USER";
+export const USER_ERROR = "USER_ERROR";

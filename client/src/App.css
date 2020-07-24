@@ -48,6 +48,10 @@ body {
   margin-right: 1rem;
 }
 
+.mt-3 {
+  margin-top: 3rem !important;
+}
+
 .alert {
   display: flex;
   align-items: center;
@@ -462,6 +466,42 @@ body {
   border-radius: 7px;
   border: none;
   outline: none;
+}
+
+/* Profile Page */
+.profile-user-name {
+  color: #fff;
+  font-size: 66px;
+  font-weight: 400;
+  margin-top: 2rem;
+}
+
+.profile-form {
+  width: 90%;
+}
+
+.profile-field {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-input {
+  margin: 2rem 0;
+}
+
+.bio-content {
+  width: 100%;
+  height: 317px;
+  padding: 1rem;
+  outline: none;
+  font-size: 30px;
+  font-family: "Poppins", sans-serif;
+  resize: none;
+}
+
+.profile {
+  padding: 4rem 0 4rem 4rem;
+  min-height: 100vh;
 }
 
 /* Laptop Media Queries */
