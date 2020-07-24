@@ -62,9 +62,11 @@ const PostItem = ({ postData }) => {
         </div>
       </div>
 
-      <div className='post-content'>
-        <p>{postData.content}</p>
-      </div>
+      <textarea
+        className='post-content'
+        disabled
+        value={postData.content}
+      ></textarea>
 
       <div className='post-actions'>
         <div className='like-post'>

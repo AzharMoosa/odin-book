@@ -1,6 +1,7 @@
 import React, { Fragment, useContext, useEffect } from "react";
 import PostItem from "./PostItem";
 import PostContext from "../../context/posts/postContext";
+import Spinner from "../layout/Spinner";
 
 const Posts = () => {
   const postContext = useContext(PostContext);
@@ -12,11 +13,17 @@ const Posts = () => {
     // eslint-disable-next-line
   }, []);
 
+  if (posts !== null && posts.length === 0) {
+    return <h4 className='no-posts'>Timeline is Empty.</h4>;
+  }
+
   return (
     <Fragment>
-      {posts.map((post) => (
-        <PostItem key={post._id} postData={post} />
-      ))}
+      {posts !== null && !loading ? (
+        posts.map((post) => <PostItem key={post._id} postData={post} />)
+      ) : (
+        <Spinner />
+      )}
     </Fragment>
   );
 };
