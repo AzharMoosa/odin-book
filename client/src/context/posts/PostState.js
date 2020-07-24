@@ -22,7 +22,7 @@ const PostState = (props) => {
   // Get Posts
   const getPosts = async () => {
     try {
-      const res = await axios.get("/api/posts");
+      const res = await axios.get("api/posts");
       dispatch({ type: GET_POSTS, payload: res.data });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response.msg });
@@ -38,7 +38,7 @@ const PostState = (props) => {
     };
 
     try {
-      const res = await axios.post("/api/posts", formData, config);
+      const res = await axios.post("api/posts", formData, config);
       dispatch({ type: ADD_POST, payload: res.data });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response.msg });

@@ -2,7 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
-
+const auth = require("../middleware/auth");
 const User = require("../models/User");
 const router = express.Router();
 
@@ -72,5 +72,37 @@ router.post(
     }
   }
 );
+
+// Update User
+router.put("/:id", auth, async (req, res) => {
+  const { name, email, bio } = req.body;
+
+  const updatedUser = {};
+
+  if (name) updatedUser.name = name;
+  if (email) updatedUser.email = email;
+  if (bio) updatedUser.bio = bio;
+
+  try {
+    let user = await User.findById(req.params.id);
+
+    // Check If User Exists
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    // Update User
+    user = await User.findByIdAndUpdate(
+      req.params.id,
+      { $set: updatedUser },
+      { new: true }
+    );
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 module.exports = router;
