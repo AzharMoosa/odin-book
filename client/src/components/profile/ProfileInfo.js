@@ -30,7 +30,6 @@ const ProfileInfo = () => {
   }, [loading]);
 
   const onSubmit = () => {
-    console.log(updatedUser);
     updateUser(updatedUser);
   };
 
@@ -51,6 +50,7 @@ const ProfileInfo = () => {
             name='name'
             onChange={onChange}
             value={name}
+            required
           />
         </div>
 
@@ -63,6 +63,7 @@ const ProfileInfo = () => {
             name='email'
             onChange={onChange}
             value={email}
+            required
           />
         </div>
 
@@ -75,6 +76,7 @@ const ProfileInfo = () => {
               className='bio-content'
               onChange={onChange}
               value={bio}
+              required
             ></textarea>
           </div>
         </div>

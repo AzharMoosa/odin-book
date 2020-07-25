@@ -1,8 +1,42 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import moment from "moment";
+import UserContext from "../../context/user/userContext";
 
-const PostItem = ({ postData }) => {
+const PostItem = ({ postData, updatePost }) => {
   const formattedDate = moment(postData.date).format("DD/MM/YYYY");
+  const userContext = useContext(UserContext);
+  const { user, getUser } = userContext;
+
+  useEffect(() => {
+    getUser();
+  });
+
+  const likePost = () => {
+    // Get Current Likes
+    let currentLikes = [...postData.likes];
+
+    // If Previous Likes
+    if (currentLikes.length > 0) {
+      currentLikes.map((current) => {
+        if (current.toString() === user._id.toString()) {
+          // Remove Like
+          currentLikes.splice(currentLikes.indexOf(current), 1);
+          updatePost({
+            ...postData,
+            likes: currentLikes,
+          });
+        } else {
+          // Add Like
+          updatePost({
+            ...postData,
+            likes: [...postData.likes, user._id],
+          });
+        }
+      });
+    } else {
+      updatePost({ ...postData, likes: [...postData.likes, user._id] });
+    }
+  };
 
   return (
     <div className='post'>
@@ -53,7 +87,7 @@ const PostItem = ({ postData }) => {
         <div className='post-numbers'>
           <div className='like-count'>
             <i className='fas fa-thumbs-up text-secondary'></i>
-            <h4>{postData.likes}</h4>
+            <h4>{postData.likes.length}</h4>
           </div>
           <div className='comment-count'>
             <i className='fas fa-comment text-secondary'></i>
@@ -70,7 +104,7 @@ const PostItem = ({ postData }) => {
 
       <div className='post-actions'>
         <div className='like-post'>
-          <i className='far fa-thumbs-up text-secondary'></i>
+          <i className='far fa-thumbs-up text-secondary' onClick={likePost}></i>
           <h4 className='text-secondary'>Like</h4>
         </div>
 

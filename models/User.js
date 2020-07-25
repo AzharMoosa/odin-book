@@ -5,11 +5,7 @@ const UserSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   bio: { type: String, default: "I'm using Odin Book" },
-  friends: [
-    {
-      user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
-    },
-  ],
+  friends: { type: Array, default: [] },
   date: { type: Date, default: Date.now },
 });
 

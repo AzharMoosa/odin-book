@@ -6,7 +6,7 @@ import Spinner from "../layout/Spinner";
 const Posts = () => {
   const postContext = useContext(PostContext);
 
-  const { posts, getPosts, loading } = postContext;
+  const { posts, getPosts, loading, updatePost } = postContext;
 
   useEffect(() => {
     getPosts();
@@ -20,7 +20,9 @@ const Posts = () => {
   return (
     <Fragment>
       {posts !== null && !loading ? (
-        posts.map((post) => <PostItem key={post._id} postData={post} />)
+        posts.map((post) => (
+          <PostItem key={post._id} postData={post} updatePost={updatePost} />
+        ))
       ) : (
         <Spinner />
       )}

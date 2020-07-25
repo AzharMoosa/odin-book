@@ -48,6 +48,20 @@ const PostState = (props) => {
   // Delete Post
 
   // Update Post
+  const updatePost = async (post) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.put(`api/posts/${post._id}`, post, config);
+      dispatch({ type: UPDATE_POST, payload: res.data });
+    } catch (err) {
+      dispatch({ type: POST_ERROR, payload: err.response.msg });
+    }
+  };
 
   return (
     <PostContext.Provider
@@ -57,6 +71,7 @@ const PostState = (props) => {
         loading: state.loading,
         getPosts,
         addPost,
+        updatePost,
       }}
     >
       {props.children}

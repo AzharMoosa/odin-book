@@ -44,7 +44,7 @@ router.post(
       });
       const post = await newPost.save();
 
-      res.json(post);
+      // res.json(post);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
@@ -54,13 +54,15 @@ router.post(
 
 // Post PUT
 router.put("/:id", auth, async (req, res) => {
-  const { content, likes, comment } = req.body;
-
+  const { content, likes, text, user } = req.body;
   const updatedPost = {};
 
+  const comment = {
+    text,
+    user,
+  };
+
   if (content) updatedPost.content = content;
-  if (likes) updatedPost.likes = likes;
-  if (comment) updatedPost.comment = comment;
 
   try {
     let post = await Post.findById(req.params.id);
@@ -74,6 +76,10 @@ router.put("/:id", auth, async (req, res) => {
     if (post.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "Not authorized" });
     }
+
+    if (text && user) updatedPost.comments = [...post.comments, comment];
+
+    if (likes) updatedPost.likes = likes;
 
     // Update Post
     post = await Post.findByIdAndUpdate(

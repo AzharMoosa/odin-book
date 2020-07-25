@@ -14,6 +14,21 @@ export default (state, action) => {
         posts: action.payload,
         loading: false,
       };
+    case ADD_POST:
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+        loading: false,
+      };
+
+    case UPDATE_POST:
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === action.payload._id ? action.payload : post
+        ),
+        loading: false,
+      };
     case POST_ERROR:
       return {
         ...state,
