@@ -8,10 +8,21 @@ const Posts = () => {
 
   const { posts, getPosts, loading, updatePost } = postContext;
 
+  const updatePosts = () => {
+    // Update Posts If Name Change
+    getPosts();
+    posts.map((post) => {
+      updatePost({ ...post });
+    });
+  };
+
   useEffect(() => {
     getPosts();
+    if (!loading) {
+      updatePosts();
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [loading]);
 
   if (posts !== null && posts.length === 0) {
     return <h4 className='no-posts'>Timeline is Empty.</h4>;

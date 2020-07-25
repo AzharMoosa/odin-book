@@ -77,6 +77,10 @@ router.put("/:id", auth, async (req, res) => {
       return res.status(401).json({ msg: "Not authorized" });
     }
 
+    const user = await User.findById(req.user.id);
+
+    updatedPost.author = user.name;
+
     if (text && user) updatedPost.comments = [...post.comments, comment];
 
     if (likes) updatedPost.likes = likes;

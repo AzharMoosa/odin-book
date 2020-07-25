@@ -29,7 +29,8 @@ const ProfileInfo = () => {
     // eslint-disable-next-line
   }, [loading]);
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     updateUser(updatedUser);
   };
 

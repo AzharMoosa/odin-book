@@ -32,7 +32,6 @@ const UserState = (props) => {
 
     try {
       const res = axios.put(`api/users/${user.id}`, user, config);
-      console.log(res.data);
       dispatch({ type: UPDATE_USER, payload: res.data });
     } catch (err) {
       dispatch({ type: USER_ERROR, payload: err.response.msg });
