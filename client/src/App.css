@@ -278,7 +278,21 @@ body {
 
 /* Timeline */
 .timeline {
-  padding: 4rem 0 4rem 4rem;
+  padding: 2rem 0 4rem 4rem;
+}
+
+.links {
+  margin-bottom: 3rem;
+}
+
+.link {
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  margin-right: 4rem;
+  font-size: 30px;
+  padding-bottom: 0.2rem;
+  border-bottom: 3px solid #000;
 }
 
 .timeline-title {
@@ -500,6 +514,13 @@ body {
 }
 
 .profile {
+  padding: 2rem 0 4rem 4rem;
+  min-height: 100vh;
+}
+
+/* My Posts */
+
+.myposts {
   padding: 4rem 0 4rem 4rem;
   min-height: 100vh;
 }

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import UserContext from "../../context/user/userContext";
+import { Link } from "react-router-dom";
 
 const ProfileInfo = () => {
   const userContext = useContext(UserContext);
@@ -40,6 +41,14 @@ const ProfileInfo = () => {
 
   return (
     <div className='profile'>
+      <div className='links'>
+        <Link to='/myposts' className='link'>
+          My Posts
+        </Link>
+        <Link to='/friends' className='link'>
+          Friends
+        </Link>
+      </div>
       <h3 className='timeline-title mt-3'>Profile Information</h3>
       <form className='login-form profile-form' onSubmit={onSubmit}>
         <div className='form-group profile-input'>
