@@ -15,7 +15,7 @@ const UserState = (props) => {
   // Get User
   const getUser = async () => {
     try {
-      const res = await axios.get("api/auth");
+      const res = await axios.get("/api/auth");
       dispatch({ type: GET_USER, payload: res.data });
     } catch (err) {
       dispatch({ type: USER_ERROR, payload: err.response.msg });
@@ -31,7 +31,7 @@ const UserState = (props) => {
     };
 
     try {
-      const res = axios.put(`api/users/${user.id}`, user, config);
+      const res = axios.put(`/api/users/${user.id}`, user, config);
       dispatch({ type: UPDATE_USER, payload: res.data });
     } catch (err) {
       dispatch({ type: USER_ERROR, payload: err.response.msg });

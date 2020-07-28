@@ -16,6 +16,7 @@
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.4;
+  background-color: var(--light);
 }
 
 /* Utils */
@@ -66,7 +67,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50%;
+  height: 50vh;
 }
 
 .loader {
@@ -523,6 +524,28 @@ body {
 .myposts {
   padding: 4rem 0 4rem 4rem;
   min-height: 100vh;
+}
+
+/* Each Post */
+
+.post-container {
+  padding: 3rem 0 3rem 4rem;
+}
+
+.post-text {
+  margin-top: 2rem;
+  height: 300px;
+  outline: none;
+  width: 95%;
+  padding: 1rem;
+  font-size: 30px;
+  font-family: "Poppins", sans-serif;
+  resize: none;
+}
+
+.comment-form {
+  margin-top: 3rem;
+  width: 95%;
 }
 
 /* Laptop Media Queries */

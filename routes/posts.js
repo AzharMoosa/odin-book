@@ -6,6 +6,18 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 const router = express.Router();
 
+// Get One Post
+router.get("/:id", async (req, res) => {
+  try {
+    // Find Posts
+    let post = await Post.findById(req.params.id);
+    res.json(post);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: "Server Error" });
+  }
+});
+
 // Posts GET
 router.get("/", auth, async (req, res) => {
   try {
@@ -60,9 +72,8 @@ router.put("/:id", auth, async (req, res) => {
   const comment = {
     text,
     user,
+    date: new Date(),
   };
-
-  if (content) updatedPost.content = content;
 
   try {
     let post = await Post.findById(req.params.id);
@@ -73,16 +84,11 @@ router.put("/:id", auth, async (req, res) => {
     }
 
     // Check If Post Belongs To User
-    if (post.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "Not authorized" });
+    if (post.user.toString() === req.user.id) {
+      if (content) updatedPost.content = content;
     }
 
-    const user = await User.findById(req.user.id);
-
-    updatedPost.author = user.name;
-
-    if (text && user) updatedPost.comments = [...post.comments, comment];
-
+    if (text && user) updatedPost.comments = [comment, ...post.comments];
     if (likes) updatedPost.likes = likes;
 
     // Update Post

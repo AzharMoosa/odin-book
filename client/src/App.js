@@ -7,6 +7,7 @@ import MyPosts from "./components/pages/MyPosts";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Alert from "./components/layout/Alert";
+import Post from "./components/posts/Post";
 
 import setAuthToken from "./utils/setAuthToken";
 import AuthState from "./context/auth/AuthState";
@@ -36,6 +37,7 @@ const App = () => {
                     <PrivateRoute exact path='/' component={Home} />
                     <PrivateRoute exact path='/profile' component={Profile} />
                     <PrivateRoute exact path='/myposts' component={MyPosts} />
+                    <PrivateRoute path='/posts/:id' component={Post} />
                     <Route exact path='/register' component={Register} />
                     <Route exact path='/login' component={Login} />
                   </Switch>

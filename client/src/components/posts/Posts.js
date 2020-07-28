@@ -8,19 +8,9 @@ const Posts = () => {
 
   const { posts, getPosts, loading, updatePost } = postContext;
 
-  const updatePosts = () => {
-    // Update Posts If Name Change
-    getPosts();
-    posts.map((post) => {
-      updatePost({ ...post });
-    });
-  };
-
   useEffect(() => {
     getPosts();
-    if (!loading) {
-      updatePosts();
-    }
+
     // eslint-disable-next-line
   }, [loading]);
 

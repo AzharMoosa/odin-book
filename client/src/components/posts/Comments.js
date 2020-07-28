@@ -3,43 +3,9 @@ import moment from "moment";
 import UserContext from "../../context/user/userContext";
 import { Link } from "react-router-dom";
 
-const PostItem = ({ postData, updatePost }) => {
-  const formattedDate = moment(postData.date).format("DD/MM/YYYY");
+const Comments = ({ comment }) => {
+  const formattedDate = moment(comment.date).format("DD/MM/YYYY");
   const userContext = useContext(UserContext);
-  const { user, getUser } = userContext;
-
-  useEffect(() => {
-    getUser();
-  });
-
-  const likePost = () => {
-    // Get Current Likes
-    let currentLikes = [...postData.likes];
-
-    // If Previous Likes
-    if (currentLikes.length > 0) {
-      currentLikes.map((current) => {
-        if (current.toString() === user._id.toString()) {
-          // Remove Like
-          currentLikes.splice(currentLikes.indexOf(current), 1);
-          updatePost({
-            ...postData,
-            likes: currentLikes,
-          });
-        } else {
-          // Add Like
-          updatePost({
-            ...postData,
-            likes: [...postData.likes, user._id],
-          });
-        }
-      });
-    } else {
-      updatePost({ ...postData, likes: [...postData.likes, user._id] });
-    }
-
-    return true;
-  };
 
   return (
     <div className='post'>
@@ -83,18 +49,8 @@ const PostItem = ({ postData, updatePost }) => {
             </g>
           </svg>
           <div className='post-info-content'>
-            <h3 className='post-author'>{postData.author}</h3>
+            <h3 className='post-author'>{comment.user.name}</h3>
             <h4 className='post-date'>{formattedDate}</h4>
-          </div>
-        </div>
-        <div className='post-numbers'>
-          <div className='like-count'>
-            <i className='fas fa-thumbs-up text-secondary'></i>
-            <h4>{postData.likes.length}</h4>
-          </div>
-          <div className='comment-count'>
-            <i className='fas fa-comment text-secondary'></i>
-            <h4>{postData.comments.length}</h4>
           </div>
         </div>
       </div>
@@ -102,25 +58,10 @@ const PostItem = ({ postData, updatePost }) => {
       <textarea
         className='post-content'
         disabled
-        value={postData.content}
+        value={comment.text}
       ></textarea>
-
-      <div className='post-actions'>
-        <div className='like-post'>
-          <i className='far fa-thumbs-up text-secondary' onClick={likePost}></i>
-          <h4 className='text-secondary'>Like</h4>
-        </div>
-
-        <div className='comment-post'>
-          <Link to={`/posts/${postData._id}`}>
-            <i className='far fa-comment text-secondary'></i>
-          </Link>
-
-          <h4 className='text-secondary'>Comment</h4>
-        </div>
-      </div>
     </div>
   );
 };
 
-export default PostItem;
+export default Comments;

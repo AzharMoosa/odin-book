@@ -1,4 +1,5 @@
 import {
+  GET_POST,
   GET_POSTS,
   ADD_POST,
   DELETE_POST,
@@ -8,6 +9,12 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_POST:
+      return {
+        ...state,
+        current: action.payload,
+        loading: false,
+      };
     case GET_POSTS:
       return {
         ...state,

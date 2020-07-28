@@ -8,20 +8,18 @@ const ProfileInfo = () => {
   const { user, getUser, loading, updateUser } = userContext;
 
   const [updatedUser, setUpdatedUser] = useState({
-    name: "",
     email: "",
     bio: "",
     id: "",
   });
 
-  const { name, email, bio } = updatedUser;
+  const { email, bio } = updatedUser;
 
   useEffect(() => {
     getUser();
     if (!loading) {
       setUpdatedUser({
         ...updatedUser,
-        name: user.name,
         email: user.email,
         bio: user.bio,
         id: user._id,
@@ -51,19 +49,6 @@ const ProfileInfo = () => {
       </div>
       <h3 className='timeline-title mt-3'>Profile Information</h3>
       <form className='login-form profile-form' onSubmit={onSubmit}>
-        <div className='form-group profile-input'>
-          <i className='fa fa-user icon'></i>
-          <input
-            className='input-field profile-field'
-            type='text'
-            placeholder='Name'
-            name='name'
-            onChange={onChange}
-            value={name}
-            required
-          />
-        </div>
-
         <div className='form-group profile-input'>
           <i className='fa fa-envelope icon'></i>
           <input
