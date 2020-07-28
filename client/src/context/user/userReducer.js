@@ -1,4 +1,4 @@
-import { GET_USER, UPDATE_USER, USER_ERROR } from "../types";
+import { GET_USER, GET_USERS, UPDATE_USER, USER_ERROR } from "../types";
 
 export default (state, action) => {
   switch (action.type) {
@@ -8,7 +8,12 @@ export default (state, action) => {
         user: action.payload,
         loading: false,
       };
-
+    case GET_USERS:
+      return {
+        ...state,
+        users_list: action.payload,
+        loading: false,
+      };
     case UPDATE_USER:
       return {
         ...state,

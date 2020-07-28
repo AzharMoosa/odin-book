@@ -75,7 +75,7 @@ router.post(
 
 // Update User
 router.put("/:id", auth, async (req, res) => {
-  const { name, email, bio } = req.body;
+  const { name, email, bio, friend, request } = req.body;
 
   const updatedUser = {};
 
@@ -91,6 +91,9 @@ router.put("/:id", auth, async (req, res) => {
       return res.status(404).json({ msg: "User not found" });
     }
 
+    if (friend) updatedUser.friends = [friend, ...user.friends];
+    if (request) updatedUser.friend_requests = request;
+
     // Update User
     user = await User.findByIdAndUpdate(
       req.params.id,
@@ -102,6 +105,18 @@ router.put("/:id", auth, async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
+  }
+});
+
+// Get Users
+router.get("/", auth, async (req, res) => {
+  try {
+    // Find Users
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: "Server Error" });
   }
 });
 

@@ -6,6 +6,7 @@ const UserSchema = mongoose.Schema({
   password: { type: String, required: true },
   bio: { type: String, default: "I'm using Odin Book" },
   friends: { type: Array, default: [] },
+  friend_requests: { type: Array, default: [] },
   date: { type: Date, default: Date.now },
 });
 
