@@ -126,7 +126,6 @@ router.get("/posts", auth, async (req, res) => {
   try {
     // Find Posts
     let user = await User.findById(req.user.id);
-    let posts = await Post.find();
     let friendID = [req.user.id];
     let friendPosts = [];
     user.friends.map((friend) => {
@@ -155,4 +154,29 @@ router.get("/posts", auth, async (req, res) => {
     res.status(500).json({ msg: "Server Error" });
   }
 });
+
+// Get All User Posts
+router.get("/posts/:id", auth, async (req, res) => {
+  try {
+    // Find Posts
+    const posts = await Post.find({ user: req.params.id }).sort({ date: -1 });
+    res.json(posts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: "Server Error" });
+  }
+});
+
+// Get One User
+router.get("/:id", async (req, res) => {
+  try {
+    // Find User
+    let user = await User.findById(req.params.id);
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: "Server Error" });
+  }
+});
+
 module.exports = router;

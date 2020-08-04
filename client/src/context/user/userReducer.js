@@ -4,6 +4,7 @@ import {
   UPDATE_USER,
   USER_ERROR,
   GET_USER_POSTS,
+  GET_USER_ID,
 } from "../types";
 
 export default (state, action) => {
@@ -24,6 +25,12 @@ export default (state, action) => {
       return {
         ...state,
         friends_posts: action.payload,
+        loading: false,
+      };
+    case GET_USER_ID:
+      return {
+        ...state,
+        current_user: action.payload,
         loading: false,
       };
     case UPDATE_USER:

@@ -1,45 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import moment from "moment";
 import UserContext from "../../context/user/userContext";
 import { Link } from "react-router-dom";
 
-const PostItem = ({ postData, updatePost }) => {
+const PostContent = ({ postData }) => {
   const formattedDate = moment(postData.date).format("DD/MM/YYYY");
-  const userContext = useContext(UserContext);
-  const { user, getUser } = userContext;
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  const likePost = () => {
-    // Get Current Likes
-    let currentLikes = [...postData.likes];
-
-    // If Previous Likes
-    if (currentLikes.length > 0) {
-      currentLikes.map((current) => {
-        if (current.toString() === user._id.toString()) {
-          // Remove Like
-          currentLikes.splice(currentLikes.indexOf(current), 1);
-          updatePost({
-            ...postData,
-            likes: currentLikes,
-          });
-        } else {
-          // Add Like
-          updatePost({
-            ...postData,
-            likes: [...postData.likes, user._id],
-          });
-        }
-      });
-    } else {
-      updatePost({ ...postData, likes: [...postData.likes, user._id] });
-    }
-
-    return true;
-  };
 
   return (
     <div className='post'>
@@ -106,23 +71,8 @@ const PostItem = ({ postData, updatePost }) => {
         disabled
         value={postData.content}
       ></textarea>
-
-      <div className='post-actions'>
-        <div className='like-post'>
-          <i className='far fa-thumbs-up text-secondary' onClick={likePost}></i>
-          <h4 className='text-secondary'>Like</h4>
-        </div>
-
-        <div className='comment-post'>
-          <Link to={`/posts/${postData._id}`}>
-            <i className='far fa-comment text-secondary'></i>
-          </Link>
-
-          <h4 className='text-secondary'>Comment</h4>
-        </div>
-      </div>
     </div>
   );
 };
 
-export default PostItem;
+export default PostContent;

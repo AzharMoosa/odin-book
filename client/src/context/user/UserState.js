@@ -8,11 +8,13 @@ import {
   UPDATE_USER,
   USER_ERROR,
   GET_USER_POSTS,
+  GET_USER_ID,
 } from "../types";
 
 const UserState = (props) => {
   const initalState = {
     user: null,
+    current_user: null,
     loading: true,
     users_list: null,
     friends_posts: null,
@@ -27,6 +29,16 @@ const UserState = (props) => {
       dispatch({ type: GET_USER, payload: res.data });
     } catch (err) {
       dispatch({ type: USER_ERROR, payload: err });
+    }
+  };
+
+  // Get User By Id
+  const getUserByID = async (id) => {
+    try {
+      const res = await axios.get(`/api/users/${id}`);
+      dispatch({ type: GET_USER_ID, payload: res.data });
+    } catch (err) {
+      dispatch({ type: USER_ERROR, payload: err.response.msg });
     }
   };
 
@@ -69,6 +81,7 @@ const UserState = (props) => {
     <UserContext.Provider
       value={{
         user: state.user,
+        current_user: state.current_user,
         users_list: state.users_list,
         loading: state.loading,
         friends_posts: state.friends_posts,
@@ -76,6 +89,7 @@ const UserState = (props) => {
         updateUser,
         getUsers,
         getUsersPost,
+        getUserByID,
       }}
     >
       {props.children}

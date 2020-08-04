@@ -61,8 +61,20 @@ body {
   margin-left: 1rem;
 }
 
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mr-2 {
+  margin-right: 2rem;
+}
+
 .mb-2 {
   margin-bottom: 2rem;
+}
+
+.ml-2 {
+  margin-left: 2rem;
 }
 
 .mt-3 {
@@ -312,6 +324,12 @@ body {
 
 .links {
   margin-bottom: 3rem;
+}
+
+.author-link {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
 }
 
 .link {
@@ -600,6 +618,13 @@ body {
   color: var(--secondary);
   font-size: 25px;
   cursor: pointer;
+}
+
+/* Profile Pages */
+.profile-bio {
+  font-size: 30px;
+  font-style: italic;
+  font-weight: 500;
 }
 
 /* Laptop Media Queries */

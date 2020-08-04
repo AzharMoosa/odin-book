@@ -10,6 +10,8 @@ import {
   DELETE_POST,
   UPDATE_POST,
   POST_ERROR,
+  GET_POSTS_ID,
+  CLEAR_CURRENT_POSTS,
 } from "../types";
 
 const PostState = (props) => {
@@ -19,6 +21,7 @@ const PostState = (props) => {
     error: null,
     loading: true,
     friends_posts: null,
+    current_posts: null,
   };
 
   const [state, dispatch] = useReducer(postReducer, initalState);
@@ -38,6 +41,15 @@ const PostState = (props) => {
     try {
       const res = await axios.get("/api/posts");
       dispatch({ type: GET_POSTS, payload: res.data });
+    } catch (err) {
+      dispatch({ type: POST_ERROR, payload: err.response.msg });
+    }
+  };
+
+  const getUserPosts = async (id) => {
+    try {
+      const res = await axios.get(`/api/users/posts/${id}`);
+      dispatch({ type: GET_POSTS_ID, payload: res.data });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response.msg });
     }
@@ -77,17 +89,26 @@ const PostState = (props) => {
     }
   };
 
+  // Clear Current Posts
+  const clearCurrentPosts = () => {
+    dispatch({ type: CLEAR_CURRENT_POSTS });
+  };
+
   return (
     <PostContext.Provider
       value={{
         posts: state.posts,
         current: state.current,
+        friends_posts: state.friends_posts,
         error: state.error,
         loading: state.loading,
+        current_posts: state.current_posts,
         getPost,
         getPosts,
         addPost,
         updatePost,
+        getUserPosts,
+        clearCurrentPosts,
       }}
     >
       {props.children}

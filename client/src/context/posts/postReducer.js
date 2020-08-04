@@ -6,6 +6,8 @@ import {
   DELETE_POST,
   UPDATE_POST,
   POST_ERROR,
+  GET_POSTS_ID,
+  CLEAR_CURRENT_POSTS,
 } from "../types";
 
 export default (state, action) => {
@@ -21,6 +23,17 @@ export default (state, action) => {
         ...state,
         posts: action.payload,
         loading: false,
+      };
+    case GET_POSTS_ID:
+      return {
+        ...state,
+        current_posts: action.payload,
+        loading: false,
+      };
+    case CLEAR_CURRENT_POSTS:
+      return {
+        ...state,
+        current_posts: null,
       };
     case ADD_POST:
       return {

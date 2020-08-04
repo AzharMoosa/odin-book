@@ -5,6 +5,7 @@ import Home from "./components/pages/Home";
 import Profile from "./components/pages/Profile";
 import MyPosts from "./components/pages/MyPosts";
 import Friends from "./components/pages/Friends";
+import UserProfile from "./components/pages/UserProfile";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Alert from "./components/layout/Alert";
@@ -39,6 +40,7 @@ const App = () => {
                     <PrivateRoute exact path='/myposts' component={MyPosts} />
                     <PrivateRoute exact path='/friends' component={Friends} />
                     <PrivateRoute path='/posts/:id' component={Post} />
+                    <PrivateRoute path='/users/:id' component={UserProfile} />
                     <Route exact path='/register' component={Register} />
                     <Route exact path='/login' component={Login} />
                   </Switch>
