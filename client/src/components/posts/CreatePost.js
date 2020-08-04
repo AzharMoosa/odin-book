@@ -16,7 +16,7 @@ const CreatePost = () => {
   useEffect(() => {
     getPosts();
     // eslint-disable-next-line
-  }, [addPost]);
+  }, [post]);
 
   const onChange = (e) => setPost({ ...post, [e.target.name]: e.target.value });
 

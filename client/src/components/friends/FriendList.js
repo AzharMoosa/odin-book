@@ -3,7 +3,7 @@ import UserContext from "../../context/user/userContext";
 
 const FriendList = ({ friend }) => {
   const userContext = useContext(UserContext);
-  const { user, getUser } = userContext;
+  const { user, getUser, loading } = userContext;
 
   useEffect(() => {
     getUser();

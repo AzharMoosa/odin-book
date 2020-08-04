@@ -61,6 +61,10 @@ body {
   margin-left: 1rem;
 }
 
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
 .mt-3 {
   margin-top: 3rem;
 }
@@ -404,6 +408,7 @@ body {
   font-family: "Poppins", sans-serif;
   resize: none;
   background-color: #fff;
+  color: #000;
 }
 
 .post-actions {

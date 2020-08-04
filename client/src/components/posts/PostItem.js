@@ -10,7 +10,7 @@ const PostItem = ({ postData, updatePost }) => {
 
   useEffect(() => {
     getUser();
-  });
+  }, []);
 
   const likePost = () => {
     // Get Current Likes

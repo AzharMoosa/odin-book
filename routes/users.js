@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 const User = require("../models/User");
+const Post = require("../models/Post");
 const router = express.Router();
 
 // Post To /api/users
@@ -120,4 +121,38 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+// Get Users Post
+router.get("/posts", auth, async (req, res) => {
+  try {
+    // Find Posts
+    let user = await User.findById(req.user.id);
+    let posts = await Post.find();
+    let friendID = [req.user.id];
+    let friendPosts = [];
+    user.friends.map((friend) => {
+      friendID.push(friend._id);
+    });
+
+    const getPosts = async () => {
+      return Promise.all(
+        friendID.map(async (id) => {
+          let post = await Post.find({ user: id });
+          post.map((p) => {
+            friendPosts.push(p);
+          });
+        })
+      );
+    };
+
+    getPosts().then(() => {
+      friendPosts.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+      res.json(friendPosts);
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: "Server Error" });
+  }
+});
 module.exports = router;

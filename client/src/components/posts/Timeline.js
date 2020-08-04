@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Posts from "./Posts";
 import { Link } from "react-router-dom";
+import PostContext from "../../context/posts/postContext";
+import UserContext from "../../context/user/userContext";
+import Spinner from "../layout/Spinner";
 
 const Timeline = () => {
+  const postContext = useContext(PostContext);
+  const userContext = useContext(UserContext);
+
+  const { posts, updatePost } = postContext;
+  const { getUsersPost, friends_posts, loading } = userContext;
+
+  useEffect(() => {
+    getUsersPost();
+    // eslint-disable-next-line
+  }, [posts]);
+
   return (
     <div className='timeline'>
       <div className='links'>
@@ -14,7 +28,15 @@ const Timeline = () => {
         </Link>
       </div>
       <h3 className='timeline-title'>Timeline</h3>
-      <Posts />
+      {!loading && friends_posts !== null ? (
+        <Posts
+          posts={friends_posts}
+          loading={loading}
+          updatePost={updatePost}
+        />
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 };

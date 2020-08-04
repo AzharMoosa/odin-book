@@ -23,7 +23,7 @@ const Friends = () => {
     getUsers();
     getUser();
     // eslint-disable-next-line
-  }, [user]);
+  }, []);
 
   return (
     <Fragment>
@@ -34,7 +34,7 @@ const Friends = () => {
             <h1 className='profile-user-name'>{!loading && user.name}</h1>
           </div>
           <div className='myposts'>
-            <h3 className='timeline-title'>My Friends</h3>
+            <h3 className='timeline-title mb-2'>My Friends</h3>
             {user.friends.length > 0 ? (
               user.friends.map((friend) => (
                 <FriendList friend={friend} key={friend._id} />

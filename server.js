@@ -9,7 +9,9 @@ const app = express();
 connectDB();
 
 // Inititalize Middleware
-app.use(express.json({ extended: true }));
+app.use(
+  express.json({ extended: true, parameterLimit: 100000, limit: "50MB" })
+);
 
 app.get("/", (req, res) => {
   res.json({

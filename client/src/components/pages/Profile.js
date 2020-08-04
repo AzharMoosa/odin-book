@@ -13,7 +13,7 @@ const Profile = () => {
     authContext.loadUser();
     getUser();
     // eslint-disable-next-line
-  }, [user]);
+  }, []);
 
   return (
     <div className='bg-light home-container'>

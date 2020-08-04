@@ -1,6 +1,7 @@
 import {
   GET_POST,
   GET_POSTS,
+  GET_USER_POSTS,
   ADD_POST,
   DELETE_POST,
   UPDATE_POST,
@@ -27,7 +28,6 @@ export default (state, action) => {
         posts: [...state.posts, action.payload],
         loading: false,
       };
-
     case UPDATE_POST:
       return {
         ...state,

@@ -5,6 +5,7 @@ import postReducer from "./postReducer";
 import {
   GET_POST,
   GET_POSTS,
+  GET_USER_POSTS,
   ADD_POST,
   DELETE_POST,
   UPDATE_POST,
@@ -17,6 +18,7 @@ const PostState = (props) => {
     current: null,
     error: null,
     loading: true,
+    friends_posts: null,
   };
 
   const [state, dispatch] = useReducer(postReducer, initalState);
