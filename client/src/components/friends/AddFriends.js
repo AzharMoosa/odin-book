@@ -1,15 +1,24 @@
 import React from "react";
 
-const AddFriends = ({ currentUser, user, updateUser, id, btn }) => {
+const AddFriends = ({
+  currentUser,
+  user,
+  updateUser,
+  id,
+  btn,
+  setLoadFriend,
+  loadFriend,
+}) => {
   const addFriend = () => {
-    const requests = [user.friend_requests];
+    const requests = [...user.friend_requests];
     requests.splice(requests.indexOf(currentUser), 1);
 
-    const friendsReq = [currentUser.friend_requests];
+    const friendsReq = [...currentUser.friend_requests];
     friendsReq.splice(friendsReq.indexOf(user), 1);
 
     updateUser({ friend: currentUser, id: id, request: requests });
     updateUser({ friend: user, id: currentUser._id, request: friendsReq });
+    setLoadFriend(!loadFriend);
   };
 
   const sendRequest = () => {
@@ -17,7 +26,12 @@ const AddFriends = ({ currentUser, user, updateUser, id, btn }) => {
       request: [...currentUser.friend_requests, user],
       id: currentUser._id,
     });
+    setLoadFriend(!loadFriend);
   };
+
+  function splitString(text, count) {
+    return text.slice(0, count) + (text.length > count ? "..." : "");
+  }
 
   return (
     <div className='add-friend mt-1'>
@@ -63,7 +77,7 @@ const AddFriends = ({ currentUser, user, updateUser, id, btn }) => {
         </div>
         <div className='add-friend-description'>
           <h3 className='post-author'>{currentUser.name}</h3>
-          <h4 className='post-date'>{currentUser.bio}</h4>
+          <h4 className='post-date'>{splitString(currentUser.bio, 80)}</h4>
         </div>
       </div>
       <i

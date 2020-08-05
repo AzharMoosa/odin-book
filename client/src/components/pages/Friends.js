@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, Fragment } from "react";
+import React, { useContext, useEffect, Fragment, useState } from "react";
 import AuthContext from "../../context/auth/authContext";
 import ProfilePicture from "../layout/ProfilePicture";
 import FriendList from "../friends/FriendList";
@@ -9,6 +9,7 @@ import Spinner from "../layout/Spinner";
 const Friends = () => {
   const authContext = useContext(AuthContext);
   const userContext = useContext(UserContext);
+  const [loadFriend, setLoadFriend] = useState(true);
   const {
     user,
     getUser,
@@ -22,8 +23,9 @@ const Friends = () => {
     authContext.loadUser();
     getUsers();
     getUser();
+    setLoadFriend(false);
     // eslint-disable-next-line
-  }, []);
+  }, [loadFriend]);
 
   return (
     <Fragment>
@@ -56,6 +58,8 @@ const Friends = () => {
                 ) {
                   return (
                     <AddFriends
+                      setLoadFriend={setLoadFriend}
+                      loadFriend={loadFriend}
                       currentUser={currentUser}
                       key={currentUser._id}
                       id={user._id}
@@ -75,6 +79,8 @@ const Friends = () => {
                 (currentUser) =>
                   currentUser.name !== user.name && (
                     <AddFriends
+                      setLoadFriend={setLoadFriend}
+                      loadFriend={loadFriend}
                       currentUser={currentUser}
                       user={user}
                       key={currentUser._id}

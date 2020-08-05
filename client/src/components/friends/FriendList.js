@@ -5,6 +5,10 @@ const FriendList = ({ friend }) => {
   const userContext = useContext(UserContext);
   const { user, getUser, loading } = userContext;
 
+  function splitString(text, count) {
+    return text.slice(0, count) + (text.length > count ? "..." : "");
+  }
+
   useEffect(() => {
     getUser();
     // eslint-disable-next-line
@@ -54,7 +58,7 @@ const FriendList = ({ friend }) => {
         </div>
         <div className='add-friend-description'>
           <h3 className='post-author'>{friend.name}</h3>
-          <h4 className='post-date'>{friend.bio}</h4>
+          <h4 className='post-date'>{splitString(friend.bio, 80)}</h4>
         </div>
       </div>
     </div>
