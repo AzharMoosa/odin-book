@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
 const { body, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 const User = require("../models/User");
@@ -42,6 +43,12 @@ router.post(
         email,
         password,
       });
+
+      // Save Image
+      let newImg = fs.readFileSync("./uploads/default-user.png");
+      var encImg = newImg.toString("base64");
+      user.img.data = new Buffer(encImg, "base64");
+      user.img.contentType = "images/png";
 
       // Hash Password
       const salt = await bcrypt.genSalt(10);
@@ -177,6 +184,14 @@ router.get("/:id", async (req, res) => {
     console.error(err.message);
     res.status(500).json({ msg: "Server Error" });
   }
+});
+
+// Upload Image
+router.post("/images", (req, res) => {
+  let newItem = new Item();
+  newItem.img.data = fs.readFileSync(req.files.userPhoto.path);
+  newItem.img.contentType = "image/png";
+  newItem.save();
 });
 
 module.exports = router;

@@ -1,40 +1,27 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useContext } from "react";
+import UserContext from "../../context/user/userContext";
 
 const ProfilePicture = () => {
+  const userContext = useContext(UserContext);
+  const { user, getUser } = userContext;
+
+  useEffect(() => {
+    getUser();
+    // eslint-disable-next-line
+  }, []);
+
+  const convertToBase64 = (u8) => {
+    return btoa(String.fromCharCode.apply(null, u8));
+  };
+
   return (
     <Fragment>
-      <svg
-        className='profile-img'
-        xmlns='http://www.w3.org/2000/svg'
-        width='400'
-        height='400'
-        viewBox='0 0 400 400'
-      >
-        <g id='Picture' transform='translate(-126 -187)'>
-          <g
-            id='Path_1'
-            data-name='Path 1'
-            transform='translate(126 187)'
-            fill='#efefef'
-          >
-            <path
-              d='M 399.5 399.5 L 0.5 399.5 L 0.5 0.5 L 399.5 0.5 L 399.5 399.5 Z'
-              stroke='none'
-            />
-            <path
-              d='M 1 1 L 1 399 L 399 399 L 399 1 L 1 1 M 0 0 L 400 0 L 400 400 L 0 400 L 0 0 Z'
-              stroke='none'
-              fill='#707070'
-            />
-          </g>
-          <path
-            id='user'
-            d='M497.824,368.124q0,20.593-11.808,35.329t-28.433,14.736H296.241q-16.626,0-28.433-14.736T256,368.124a271.417,271.417,0,0,1,1.606-30.323,162.941,162.941,0,0,1,5.951-28.717,95.608,95.608,0,0,1,11.052-24.749,52.888,52.888,0,0,1,17.759-16.814A49.075,49.075,0,0,1,317.779,261q24.749,24.182,59.134,24.182T436.046,261a49.074,49.074,0,0,1,25.41,6.518,52.888,52.888,0,0,1,17.759,16.814,95.607,95.607,0,0,1,11.052,24.749,162.942,162.942,0,0,1,5.951,28.717A271.417,271.417,0,0,1,497.824,368.124ZM449.46,200.547q0,30.039-21.254,51.293t-51.293,21.254q-30.039,0-51.293-21.254t-21.254-51.293q0-30.039,21.254-51.293T376.912,128q30.039,0,51.293,21.254T449.46,200.547Z'
-            transform='translate(-49.131 113.693)'
-            fill='#15b097'
-          />
-        </g>
-      </svg>
+      {user !== null && (
+        <img
+          src={`data:image/png;base64,${convertToBase64(user.img.data.data)}`}
+          alt='user-img'
+        />
+      )}
     </Fragment>
   );
 };

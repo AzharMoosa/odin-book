@@ -8,6 +8,7 @@ const UserSchema = mongoose.Schema({
   friends: { type: Array, default: [] },
   friend_requests: { type: Array, default: [] },
   date: { type: Date, default: Date.now },
+  img: { data: Buffer, contentType: String },
 });
 
 module.exports = mongoose.model("user", UserSchema);

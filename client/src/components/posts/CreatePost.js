@@ -8,6 +8,7 @@ const CreatePost = () => {
   const [post, setPost] = useState({
     content: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const { addPost, getPosts } = postContext;
   const { setAlert } = alertContext;
@@ -15,8 +16,9 @@ const CreatePost = () => {
 
   useEffect(() => {
     getPosts();
+    setLoading(false);
     // eslint-disable-next-line
-  }, [post]);
+  }, [loading]);
 
   const onChange = (e) => setPost({ ...post, [e.target.name]: e.target.value });
 
@@ -30,6 +32,7 @@ const CreatePost = () => {
       });
       setPost({ content: "" });
     }
+    setLoading(true);
   };
 
   return (

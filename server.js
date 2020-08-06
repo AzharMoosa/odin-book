@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 const usersRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postsRoute = require("./routes/posts");
@@ -12,6 +13,8 @@ connectDB();
 app.use(
   express.json({ extended: true, parameterLimit: 100000, limit: "50MB" })
 );
+
+app.use(multer({ dest: "./uploads/" }).single("avatar"));
 
 app.get("/", (req, res) => {
   res.json({

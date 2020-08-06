@@ -30,7 +30,11 @@ const Timeline = () => {
       <h3 className='timeline-title'>Timeline</h3>
       {!loading && friends_posts !== null ? (
         <Posts
-          posts={friends_posts}
+          posts={
+            friends_posts.length > 20
+              ? friends_posts.slice(0, 30)
+              : friends_posts
+          }
           loading={loading}
           updatePost={updatePost}
         />
