@@ -11,9 +11,10 @@ const ProfileInfo = () => {
     email: "",
     bio: "",
     id: "",
+    avatar: "",
   });
 
-  const { email, bio } = updatedUser;
+  const { email, bio, avatar } = updatedUser;
 
   useEffect(() => {
     getUser();
@@ -23,6 +24,7 @@ const ProfileInfo = () => {
         email: user.email,
         bio: user.bio,
         id: user._id,
+        avatar: "",
       });
     }
     // eslint-disable-next-line
@@ -37,6 +39,10 @@ const ProfileInfo = () => {
     setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
   };
 
+  const changeImage = (e) => {
+    setUpdatedUser({ ...updatedUser, avatar: e.target.files[0] });
+  };
+
   return (
     <div className='profile'>
       <div className='links'>
@@ -48,7 +54,12 @@ const ProfileInfo = () => {
         </Link>
       </div>
       <h3 className='timeline-title mt-3'>Profile Information</h3>
-      <form className='login-form profile-form' onSubmit={onSubmit}>
+      <form
+        className='login-form profile-form'
+        encType='multipart/form-data'
+        onSubmit={onSubmit}
+        method='POST'
+      >
         <div className='form-group profile-input'>
           <i className='fa fa-envelope icon'></i>
           <input
@@ -60,6 +71,21 @@ const ProfileInfo = () => {
             value={email}
             required
           />
+        </div>
+
+        <div>
+          <h3 className='timeline-title mt-3'>Profile Image</h3>
+          <input
+            type='file'
+            id='file'
+            name='avatar'
+            className='inputfile'
+            onChange={changeImage}
+            accept='image/*'
+          />
+          <label htmlFor='file'>
+            {avatar === "" ? "Choose an Image" : avatar.name}
+          </label>
         </div>
 
         <div>

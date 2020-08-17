@@ -9,6 +9,7 @@ import {
   USER_ERROR,
   GET_USER_POSTS,
   GET_USER_ID,
+  CLEAR_CURRENT_USER,
 } from "../types";
 
 const UserState = (props) => {
@@ -69,12 +70,28 @@ const UserState = (props) => {
       },
     };
 
+    let formData = new FormData();
+    if (user.avatar !== undefined) {
+      formData.append("bio", user.bio);
+      formData.append("email", user.email);
+      formData.append("avatar", user.avatar);
+      formData.append("id", user.id);
+    }
+
     try {
-      const res = await axios.put(`/api/users/${user.id}`, user, config);
+      const res = await axios.put(
+        `/api/users/${user.id}`,
+        user.avatar !== undefined ? formData : user,
+        config
+      );
       dispatch({ type: UPDATE_USER, payload: res.data });
     } catch (err) {
       dispatch({ type: USER_ERROR, payload: err });
     }
+  };
+
+  const clearCurrent = () => {
+    dispatch({ type: CLEAR_CURRENT_USER });
   };
 
   return (
@@ -90,6 +107,7 @@ const UserState = (props) => {
         getUsers,
         getUsersPost,
         getUserByID,
+        clearCurrent,
       }}
     >
       {props.children}

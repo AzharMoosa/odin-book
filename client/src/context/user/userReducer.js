@@ -5,6 +5,7 @@ import {
   USER_ERROR,
   GET_USER_POSTS,
   GET_USER_ID,
+  CLEAR_CURRENT_USER,
 } from "../types";
 
 export default (state, action) => {
@@ -43,6 +44,11 @@ export default (state, action) => {
       return {
         ...state,
         error: action.payload,
+      };
+    case CLEAR_CURRENT_USER:
+      return {
+        ...state,
+        current_user: null,
       };
     default:
       return state;

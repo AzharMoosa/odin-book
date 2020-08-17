@@ -3,6 +3,7 @@ import AuthContext from "../../context/auth/authContext";
 import ProfilePicture from "../layout/ProfilePicture";
 import FriendList from "../friends/FriendList";
 import AddFriends from "../friends/AddFriends";
+import FriendRequest from "../friends/FriendRequest";
 import UserContext from "../../context/user/userContext";
 import Spinner from "../layout/Spinner";
 
@@ -24,6 +25,7 @@ const Friends = () => {
     getUsers();
     getUser();
     setLoadFriend(false);
+
     // eslint-disable-next-line
   }, [loadFriend]);
 
@@ -38,9 +40,19 @@ const Friends = () => {
           <div className='myposts'>
             <h3 className='timeline-title mb-2'>My Friends</h3>
             {user.friends.length > 0 ? (
-              user.friends.map((friend) => (
-                <FriendList friend={friend} key={friend._id} />
-              ))
+              users_list.map((currentUser) => {
+                for (let i = 0; i < user.friends.length > 0; i++) {
+                  if (currentUser._id === user.friends[i]) {
+                    return (
+                      <FriendList
+                        currentUser={currentUser}
+                        key={currentUser._id}
+                        loading={loading}
+                      />
+                    );
+                  }
+                }
+              })
             ) : (
               <h4 className='no-posts'>Friend List is Empty.</h4>
             )}
@@ -50,11 +62,9 @@ const Friends = () => {
                 if (
                   currentUser.name !== user.name &&
                   !currentUser.friend_requests.some(
-                    (friend) => friend.name === user.name
+                    (friend) => friend === user._id
                   ) &&
-                  !currentUser.friends.some(
-                    (friend) => friend.name === user.name
-                  )
+                  !currentUser.friends.some((friend) => friend === user._id)
                 ) {
                   return (
                     <AddFriends
@@ -65,7 +75,6 @@ const Friends = () => {
                       id={user._id}
                       user={user}
                       updateUser={updateUser}
-                      btn={"request"}
                     />
                   );
                 }
@@ -75,20 +84,24 @@ const Friends = () => {
             )}
             <h3 className='timeline-title mt-3'>Friend Requests</h3>
             {user.friend_requests.length > 0 ? (
-              user.friend_requests.map(
-                (currentUser) =>
-                  currentUser.name !== user.name && (
-                    <AddFriends
-                      setLoadFriend={setLoadFriend}
-                      loadFriend={loadFriend}
-                      currentUser={currentUser}
-                      user={user}
-                      key={currentUser._id}
-                      id={user._id}
-                      updateUser={updateUser}
-                    />
-                  )
-              )
+              users_list.map((currentUser) => {
+                for (let i = 0; i < user.friend_requests.length; i++) {
+                  if (currentUser._id === user.friend_requests[i]) {
+                    return (
+                      <FriendRequest
+                        setLoadFriend={setLoadFriend}
+                        loadFriend={loadFriend}
+                        currentUser={currentUser}
+                        user={user}
+                        key={currentUser._id}
+                        id={user._id}
+                        updateUser={updateUser}
+                        loading={loading}
+                      />
+                    );
+                  }
+                }
+              })
             ) : (
               <h4 className='no-posts'>No Friend Requests</h4>
             )}

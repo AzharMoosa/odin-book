@@ -14,8 +14,6 @@ app.use(
   express.json({ extended: true, parameterLimit: 100000, limit: "50MB" })
 );
 
-app.use(multer({ dest: "./uploads/" }).single("avatar"));
-
 app.get("/", (req, res) => {
   res.json({
     msg: "Welcome To Odin Book API",

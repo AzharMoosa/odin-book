@@ -6,10 +6,18 @@ import { Link } from "react-router-dom";
 const PostItem = ({ postData, updatePost }) => {
   const formattedDate = moment(postData.date).format("DD/MM/YYYY");
   const userContext = useContext(UserContext);
-  const { user, getUser } = userContext;
+  const {
+    user,
+    getUser,
+    getUserByID,
+    current_user,
+    loading,
+    clearCurrent,
+  } = userContext;
 
   useEffect(() => {
     getUser();
+    getUserByID(postData.user);
   }, []);
 
   const convertToBase64 = (u8) => {
@@ -49,11 +57,11 @@ const PostItem = ({ postData, updatePost }) => {
     <div className='post'>
       <div className='post-top'>
         <div className='post-info'>
-          {user !== null && (
+          {current_user !== null && !loading && (
             <img
               className='profile-pic'
               src={`data:image/png;base64,${convertToBase64(
-                user.img.data.data
+                current_user.img.data.data
               )}`}
               alt='user-img'
             />

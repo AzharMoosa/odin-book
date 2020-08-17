@@ -14,7 +14,7 @@ const Profile = () => {
     authContext.loadUser();
     getUser();
     // eslint-disable-next-line
-  }, []);
+  }, [loading]);
 
   return (
     <Fragment>

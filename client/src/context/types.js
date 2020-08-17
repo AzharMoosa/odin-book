@@ -22,3 +22,4 @@ export const USER_ERROR = "USER_ERROR";
 export const GET_USER_ID = "GET_USER_ID";
 export const GET_POSTS_ID = "GET_POSTS_ID";
 export const CLEAR_CURRENT_POSTS = "CLEAR_CURRENT_POSTS";
+export const CLEAR_CURRENT_USER = "CLEAR_CURRENT_USER";

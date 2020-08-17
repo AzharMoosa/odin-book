@@ -635,6 +635,34 @@ body {
   font-weight: 500;
 }
 
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  font-size: 1.25em;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  background-color: var(--secondary);
+  display: inline-block;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: var(--primary);
+}
+
+.inputfile + label {
+  cursor: pointer; /* "hand" cursor */
+}
+
 /* Laptop Media Queries */
 @media (max-width: 1440px) {
   .navbar {

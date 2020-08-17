@@ -2,28 +2,14 @@ import React from "react";
 
 const AddFriends = ({
   currentUser,
-  user,
   updateUser,
   id,
-  btn,
   setLoadFriend,
   loadFriend,
 }) => {
-  const addFriend = () => {
-    const requests = [...user.friend_requests];
-    requests.splice(requests.indexOf(currentUser), 1);
-
-    const friendsReq = [...currentUser.friend_requests];
-    friendsReq.splice(friendsReq.indexOf(user), 1);
-
-    updateUser({ friend: currentUser, id: id, request: requests });
-    updateUser({ friend: user, id: currentUser._id, request: friendsReq });
-    setLoadFriend(!loadFriend);
-  };
-
   const sendRequest = () => {
     updateUser({
-      request: [...currentUser.friend_requests, user],
+      request: [...currentUser.friend_requests, id],
       id: currentUser._id,
     });
     setLoadFriend(!loadFriend);
@@ -41,7 +27,6 @@ const AddFriends = ({
     <div className='add-friend mt-1'>
       <div className='add-friend-info'>
         <div className='add-friend-user mr-1'>
-          {" "}
           <img
             className='profile-pic'
             src={`data:image/png;base64,${convertToBase64(
@@ -56,12 +41,8 @@ const AddFriends = ({
         </div>
       </div>
       <i
-        className={
-          btn === "request"
-            ? "fas fa-user-plus add-friend-btn"
-            : "fas fa-user-check add-friend-btn"
-        }
-        onClick={btn === "request" ? sendRequest : addFriend}
+        className={"fas fa-user-plus add-friend-btn"}
+        onClick={sendRequest}
       ></i>
     </div>
   );

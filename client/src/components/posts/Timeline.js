@@ -31,7 +31,7 @@ const Timeline = () => {
       {!loading && friends_posts !== null ? (
         <Posts
           posts={
-            friends_posts.length > 20
+            friends_posts.length > 30
               ? friends_posts.slice(0, 30)
               : friends_posts
           }

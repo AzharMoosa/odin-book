@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const { body, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
+const upload = require("../middleware/upload");
 const User = require("../models/User");
 const Post = require("../models/Post");
 const router = express.Router();
@@ -82,14 +83,26 @@ router.post(
 );
 
 // Update User
-router.put("/:id", auth, async (req, res) => {
-  const { name, email, bio, friend, request } = req.body;
+router.put("/:id", [auth, upload.single("avatar")], async (req, res) => {
+  const { name, email, bio, friend, request, id } = req.body;
 
   const updatedUser = {};
 
   if (name) updatedUser.name = name;
   if (email) updatedUser.email = email;
   if (bio) updatedUser.bio = bio;
+
+  // Save Image
+  if (req.file) {
+    let img = fs.readFileSync(req.file.path);
+    let encode_image = img.toString("base64");
+    // Define a JSONobject for the image attributes for saving to database
+    let finalImg = {
+      data: new Buffer(encode_image, "base64"),
+      contentType: "images/png",
+    };
+    updatedUser.img = finalImg;
+  }
 
   try {
     let user = await User.findById(req.params.id);
@@ -99,7 +112,7 @@ router.put("/:id", auth, async (req, res) => {
       return res.status(404).json({ msg: "User not found" });
     }
 
-    if (friend) updatedUser.friends = [friend, ...user.friends];
+    if (friend) updatedUser.friends = [friend._id, ...user.friends];
     if (request) updatedUser.friend_requests = request;
 
     // Update User
@@ -184,14 +197,6 @@ router.get("/:id", async (req, res) => {
     console.error(err.message);
     res.status(500).json({ msg: "Server Error" });
   }
-});
-
-// Upload Image
-router.post("/images", (req, res) => {
-  let newItem = new Item();
-  newItem.img.data = fs.readFileSync(req.files.userPhoto.path);
-  newItem.img.contentType = "image/png";
-  newItem.save();
 });
 
 module.exports = router;
