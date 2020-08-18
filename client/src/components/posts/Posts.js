@@ -7,15 +7,15 @@ const Posts = ({ posts, updatePost, loading, users_list }) => {
       {!loading &&
         users_list !== null &&
         // eslint-disable-next-line
-        users_list.map((currentUser) => {
-          for (let i = 0; i < posts.length; i++) {
-            if (currentUser._id === posts[i].user) {
+        posts.map((post) => {
+          for (let i = 0; i < users_list.length; i++) {
+            if (users_list[i]._id === post.user) {
               return (
                 <PostItem
-                  key={posts[i]._id}
-                  postData={posts[i]}
+                  key={post._id}
+                  postData={post}
                   updatePost={updatePost}
-                  currentUser={currentUser}
+                  currentUser={users_list[i]}
                 />
               );
             }
