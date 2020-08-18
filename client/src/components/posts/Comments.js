@@ -1,11 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import moment from "moment";
-import UserContext from "../../context/user/userContext";
-import { Link } from "react-router-dom";
 
 const Comments = ({ comment }) => {
   const formattedDate = moment(comment.date).format("DD/MM/YYYY");
-  const userContext = useContext(UserContext);
 
   return (
     <div className='post'>

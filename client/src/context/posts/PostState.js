@@ -5,7 +5,6 @@ import postReducer from "./postReducer";
 import {
   GET_POST,
   GET_POSTS,
-  GET_USER_POSTS,
   ADD_POST,
   DELETE_POST,
   UPDATE_POST,
@@ -72,6 +71,9 @@ const PostState = (props) => {
   };
 
   // Delete Post
+  const deletePost = () => {
+    dispatch({ type: DELETE_POST });
+  };
 
   // Update Post
   const updatePost = async (post) => {
@@ -109,6 +111,7 @@ const PostState = (props) => {
         updatePost,
         getUserPosts,
         clearCurrentPosts,
+        deletePost,
       }}
     >
       {props.children}

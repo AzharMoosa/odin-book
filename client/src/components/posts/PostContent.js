@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import UserContext from "../../context/user/userContext";
 import { Link } from "react-router-dom";
 
 const PostContent = ({ postData }) => {

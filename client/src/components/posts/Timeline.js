@@ -10,10 +10,17 @@ const Timeline = () => {
   const userContext = useContext(UserContext);
 
   const { posts, updatePost } = postContext;
-  const { getUsersPost, friends_posts, loading } = userContext;
+  const {
+    getUsersPost,
+    friends_posts,
+    loading,
+    getUsers,
+    users_list,
+  } = userContext;
 
   useEffect(() => {
     getUsersPost();
+    getUsers();
     // eslint-disable-next-line
   }, [posts]);
 
@@ -28,7 +35,7 @@ const Timeline = () => {
         </Link>
       </div>
       <h3 className='timeline-title'>Timeline</h3>
-      {!loading && friends_posts !== null ? (
+      {!loading && friends_posts !== null && users_list !== null ? (
         <Posts
           posts={
             friends_posts.length > 30
@@ -37,6 +44,7 @@ const Timeline = () => {
           }
           loading={loading}
           updatePost={updatePost}
+          users_list={users_list}
         />
       ) : (
         <Spinner />

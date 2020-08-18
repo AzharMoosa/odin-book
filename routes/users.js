@@ -149,7 +149,7 @@ router.get("/posts", auth, async (req, res) => {
     let friendID = [req.user.id];
     let friendPosts = [];
     user.friends.map((friend) => {
-      friendID.push(friend._id);
+      friendID.push(friend);
     });
 
     const getPosts = async () => {

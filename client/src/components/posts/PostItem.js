@@ -3,21 +3,14 @@ import moment from "moment";
 import UserContext from "../../context/user/userContext";
 import { Link } from "react-router-dom";
 
-const PostItem = ({ postData, updatePost }) => {
+const PostItem = ({ postData, updatePost, currentUser }) => {
   const formattedDate = moment(postData.date).format("DD/MM/YYYY");
   const userContext = useContext(UserContext);
-  const {
-    user,
-    getUser,
-    getUserByID,
-    current_user,
-    loading,
-    clearCurrent,
-  } = userContext;
+  const { user, getUser, loading } = userContext;
 
   useEffect(() => {
     getUser();
-    getUserByID(postData.user);
+    // eslint-disable-next-line
   }, []);
 
   const convertToBase64 = (u8) => {
@@ -30,7 +23,7 @@ const PostItem = ({ postData, updatePost }) => {
 
     // If Previous Likes
     if (currentLikes.length > 0) {
-      currentLikes.map((current) => {
+      currentLikes.forEach((current) => {
         if (current.toString() === user._id.toString()) {
           // Remove Like
           currentLikes.splice(currentLikes.indexOf(current), 1);
@@ -57,11 +50,11 @@ const PostItem = ({ postData, updatePost }) => {
     <div className='post'>
       <div className='post-top'>
         <div className='post-info'>
-          {current_user !== null && !loading && (
+          {currentUser !== null && !loading && (
             <img
               className='profile-pic'
               src={`data:image/png;base64,${convertToBase64(
-                current_user.img.data.data
+                currentUser.img.data.data
               )}`}
               alt='user-img'
             />

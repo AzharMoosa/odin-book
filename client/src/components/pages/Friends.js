@@ -40,7 +40,9 @@ const Friends = () => {
           <div className='myposts'>
             <h3 className='timeline-title mb-2'>My Friends</h3>
             {user.friends.length > 0 ? (
+              // eslint-disable-next-line
               users_list.map((currentUser) => {
+                // eslint-disable-next-line
                 for (let i = 0; i < user.friends.length > 0; i++) {
                   if (currentUser._id === user.friends[i]) {
                     return (
@@ -58,6 +60,7 @@ const Friends = () => {
             )}
             <h3 className='timeline-title mt-3'>Find Friends</h3>
             {users_list.length > 0 ? (
+              // eslint-disable-next-line
               users_list.map((currentUser) => {
                 if (
                   currentUser.name !== user.name &&
@@ -84,6 +87,7 @@ const Friends = () => {
             )}
             <h3 className='timeline-title mt-3'>Friend Requests</h3>
             {user.friend_requests.length > 0 ? (
+              // eslint-disable-next-line
               users_list.map((currentUser) => {
                 for (let i = 0; i < user.friend_requests.length; i++) {
                   if (currentUser._id === user.friend_requests[i]) {

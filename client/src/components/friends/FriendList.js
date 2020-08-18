@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 
 const FriendList = ({ currentUser, loading }) => {
   function splitString(text, count) {

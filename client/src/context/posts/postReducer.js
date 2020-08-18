@@ -1,7 +1,6 @@
 import {
   GET_POST,
   GET_POSTS,
-  GET_USER_POSTS,
   ADD_POST,
   DELETE_POST,
   UPDATE_POST,
@@ -48,6 +47,10 @@ export default (state, action) => {
           post._id === action.payload._id ? action.payload : post
         ),
         loading: false,
+      };
+    case DELETE_POST:
+      return {
+        ...state,
       };
     case POST_ERROR:
       return {
