@@ -1125,6 +1125,9 @@ body {
 
   .btn-primary {
     width: 250px;
+  }
+
+  .update-btn {
     margin-left: 1rem;
   }
 

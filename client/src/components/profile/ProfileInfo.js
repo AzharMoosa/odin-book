@@ -98,7 +98,7 @@ const ProfileInfo = ({ user, loading, updateUser }) => {
           </div>
         </div>
 
-        <div>
+        <div className='update-btn'>
           <button className='btn-primary btn-register' type='submit'>
             Update
           </button>
