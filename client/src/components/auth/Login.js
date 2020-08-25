@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 import AlertContext from "../../context/alert/alertContext";
 
@@ -74,68 +75,11 @@ const Login = (props) => {
             <button className='btn-primary btn-login' type='submit'>
               Sign In
             </button>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='319'
-              height='99'
-              viewBox='0 0 319 99'
-              className='fb-btn'
-            >
-              <g
-                id='Group_4'
-                data-name='Group 4'
-                transform='translate(-971 -775)'
-              >
-                <g
-                  id='Login_Btn'
-                  data-name='Login Btn'
-                  transform='translate(726 -13)'
-                >
-                  <rect
-                    id='Rectangle_6'
-                    data-name='Rectangle 6'
-                    width='319'
-                    height='99'
-                    rx='7'
-                    transform='translate(245 788)'
-                    fill='#4e73c1'
-                  />
-                </g>
-                <g id='original' transform='translate(966.17 770.17)'>
-                  <rect
-                    id='Blue'
-                    width='99'
-                    height='99'
-                    rx='7'
-                    transform='translate(4.83 4.83)'
-                    fill='#3d5a98'
-                  />
-                  <path
-                    id='f'
-                    d='M80.944,106.743V68.406H93.809l1.924-14.94H80.944V43.93c0-4.325,1.2-7.278,7.4-7.278H96.26V23.269A105.868,105.868,0,0,0,84.725,22.7c-11.393,0-19.24,6.943-19.24,19.75V53.466H52.62v14.94H65.485v38.337Z'
-                    transform='translate(-7.814 -2.921)'
-                    fill='#fff'
-                  />
-                </g>
-                <text
-                  id='Login_with_Facebook'
-                  data-name='Login with 
-Facebook'
-                  transform='translate(1180 818)'
-                  fill='#fff'
-                  fontSize='27'
-                  fontFamily='Poppins-Medium, Poppins'
-                  fontWeight='500'
-                >
-                  <tspan x='-71.226' y='0'>
-                    Login with{" "}
-                  </tspan>
-                  <tspan x='-66.434' y='35'>
-                    Facebook
-                  </tspan>
-                </text>
-              </g>
-            </svg>
+            <Link to='/register'>
+              <button className='btn-primary btn-login btn-red'>
+                Register
+              </button>
+            </Link>
           </div>
         </form>
       </div>

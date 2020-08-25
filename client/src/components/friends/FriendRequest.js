@@ -46,7 +46,7 @@ const FriendsRequest = ({
             </div>
             <div className='add-friend-description'>
               <h3 className='post-author'>{currentUser.name}</h3>
-              <h4 className='post-date'>{splitString(currentUser.bio, 80)}</h4>
+              <h4 className='post-date'>{splitString(currentUser.bio, 35)}</h4>
             </div>
           </div>
           <i

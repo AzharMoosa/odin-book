@@ -1,12 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
-import UserContext from "../../context/user/userContext";
+import React, { useState, useEffect } from "react";
+
 import { Link } from "react-router-dom";
 
-const ProfileInfo = () => {
-  const userContext = useContext(UserContext);
-
-  const { user, getUser, loading, updateUser } = userContext;
-
+const ProfileInfo = ({ user, loading, updateUser }) => {
   const [updatedUser, setUpdatedUser] = useState({
     email: "",
     bio: "",
@@ -17,7 +13,6 @@ const ProfileInfo = () => {
   const { email, bio, avatar } = updatedUser;
 
   useEffect(() => {
-    getUser();
     if (!loading) {
       setUpdatedUser({
         ...updatedUser,
@@ -30,9 +25,10 @@ const ProfileInfo = () => {
     // eslint-disable-next-line
   }, [loading]);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     updateUser(updatedUser);
+    setUpdatedUser({ ...updatedUser, avatar: "" });
   };
 
   const onChange = (e) => {
@@ -81,7 +77,7 @@ const ProfileInfo = () => {
             name='avatar'
             className='inputfile'
             onChange={changeImage}
-            accept='image/*'
+            accept='image/x-png, image/jpeg'
           />
           <label htmlFor='file'>
             {avatar === "" ? "Choose an Image" : avatar.name}
@@ -102,9 +98,11 @@ const ProfileInfo = () => {
           </div>
         </div>
 
-        <button className='btn-primary btn-register' type='submit'>
-          Update
-        </button>
+        <div>
+          <button className='btn-primary btn-register' type='submit'>
+            Update
+          </button>
+        </div>
       </form>
     </div>
   );

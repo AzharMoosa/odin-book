@@ -16,11 +16,12 @@ const Post = (props) => {
 
   const { current, getPost, loading, updatePost, getPosts } = postContext;
   const { setAlert } = alertContext;
-  const { user, getUser } = userContext;
+  const { user, getUser, users_list, getUsers } = userContext;
 
   useEffect(() => {
     authContext.loadUser();
     getUser();
+    getUsers();
     getPosts();
     getPost(getID());
     // eslint-disable-next-line
@@ -50,7 +51,7 @@ const Post = (props) => {
 
   return (
     <Fragment>
-      {current !== null && !loading ? (
+      {current !== null && !loading && users_list !== null ? (
         <div className='post-container'>
           <h3 className='timeline-title'>Post Content</h3>
           <textarea
@@ -73,9 +74,22 @@ const Post = (props) => {
               />
             </div>
           </form>
-          {current.comments.map((comment) => (
-            <Comments key={uuid()} comment={comment} />
-          ))}
+          {
+            // eslint-disable-next-line
+            current.comments.map((comment) => {
+              for (let i = 0; i < users_list.length; i++) {
+                if (comment.user === users_list[i]._id) {
+                  return (
+                    <Comments
+                      key={uuid()}
+                      comment={comment}
+                      currentUser={users_list[i]}
+                    />
+                  );
+                }
+              }
+            })
+          }
         </div>
       ) : (
         <Spinner />

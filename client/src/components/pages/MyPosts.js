@@ -11,7 +11,7 @@ const MyPosts = () => {
     // eslint-disable-next-line
   }, []);
   return (
-    <div className='bg-light home-container'>
+    <div className='bg-light home-container home'>
       <Sidebar />
       <ViewPosts />
     </div>

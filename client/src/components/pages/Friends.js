@@ -34,7 +34,7 @@ const Friends = () => {
       {users_list !== null && user !== null && !loading ? (
         <div className='bg-light home-container'>
           <div className='sidebar'>
-            <ProfilePicture />
+            <ProfilePicture user={user} />
             <h1 className='profile-user-name'>{!loading && user.name}</h1>
           </div>
           <div className='myposts'>

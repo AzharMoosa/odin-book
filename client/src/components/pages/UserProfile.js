@@ -10,7 +10,7 @@ const UserProfile = (props) => {
   const authContext = useContext(AuthContext);
   const userContext = useContext(UserContext);
   const postContext = useContext(PostContext);
-  const { getUserByID, loading, current_user } = userContext;
+  const { getUserByID, loading, current_user, user, getUser } = userContext;
   const { getUserPosts, current_posts, clearCurrentPosts } = postContext;
 
   useEffect(() => {
@@ -18,6 +18,7 @@ const UserProfile = (props) => {
     clearCurrentPosts();
     getUserByID(getID());
     getUserPosts(getID());
+    getUser();
     // eslint-disable-next-line
   }, []);
 
@@ -32,10 +33,10 @@ const UserProfile = (props) => {
       {!loading && current_user !== null && current_posts !== null ? (
         <div className='bg-light home-container'>
           <div className='sidebar'>
-            <ProfilePicture />
+            <ProfilePicture user={user} />
             <h1 className='profile-user-name'>{current_user.name}</h1>
           </div>
-          <div className='profile'>
+          <div className='profile user-profile'>
             <h3 className='timeline-title mt-3'>Profile Bio</h3>
             <p className='profile-bio mt-2'>{current_user.bio}</p>
             <h3 className='timeline-title mt-3'>Posts</h3>

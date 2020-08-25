@@ -48,7 +48,7 @@ router.post(
       // Save Image
       let newImg = fs.readFileSync("./uploads/default-user.png");
       var encImg = newImg.toString("base64");
-      user.img.data = new Buffer(encImg, "base64");
+      user.img.data = Buffer.from(encImg, "base64");
       user.img.contentType = "images/png";
 
       // Hash Password
@@ -84,7 +84,7 @@ router.post(
 
 // Update User
 router.put("/:id", [auth, upload.single("avatar")], async (req, res) => {
-  const { name, email, bio, friend, request, id } = req.body;
+  const { name, email, bio, friend, request } = req.body;
 
   const updatedUser = {};
 
@@ -98,7 +98,7 @@ router.put("/:id", [auth, upload.single("avatar")], async (req, res) => {
     let encode_image = img.toString("base64");
     // Define a JSONobject for the image attributes for saving to database
     let finalImg = {
-      data: new Buffer(encode_image, "base64"),
+      data: Buffer.from(encode_image, "base64"),
       contentType: "images/png",
     };
     updatedUser.img = finalImg;

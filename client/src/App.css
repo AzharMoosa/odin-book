@@ -45,6 +45,10 @@ body {
   background-color: var(--secondary);
 }
 
+.btn-red {
+  background-color: var(--danger);
+}
+
 .mt-1 {
   margin-top: 1rem;
 }
@@ -317,6 +321,12 @@ body {
   background-color: var(--primary);
 }
 
+.sidebar-img {
+  height: 400px;
+  width: 400px;
+  margin: 2rem 0;
+}
+
 /* Timeline */
 .timeline {
   padding: 2rem 0 4rem 4rem;
@@ -539,6 +549,7 @@ body {
 }
 
 /* Profile Page */
+
 .profile-user-name {
   color: #fff;
   font-size: 66px;
@@ -604,6 +615,7 @@ body {
 }
 
 /* Friend */
+
 .add-friend {
   background-color: #fff;
   height: 126px;
@@ -629,11 +641,15 @@ body {
 }
 
 /* Profile Pages */
+
 .profile-bio {
   font-size: 30px;
   font-style: italic;
   font-weight: 500;
+  width: 90%;
 }
+
+/* Input File Btn */
 
 .inputfile {
   width: 0.1px;
@@ -660,7 +676,7 @@ body {
 }
 
 .inputfile + label {
-  cursor: pointer; /* "hand" cursor */
+  cursor: pointer;
 }
 
 /* Laptop Media Queries */
@@ -671,7 +687,7 @@ body {
 
   .navbar-title {
     margin-left: 1rem;
-    font-size: 40px;
+    font-size: 35px;
   }
 
   .nav-link {
@@ -716,10 +732,51 @@ body {
     width: 250px;
     height: 80px;
   }
+
+  .sidebar-img {
+    width: 350px;
+    height: 350px;
+  }
+
+  .create-post-content textarea {
+    width: 350px;
+    font-size: 25px;
+  }
 }
 
 /* Tablet Media Queries */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  .sidebar-img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .create-post-content textarea {
+    width: 300px;
+  }
+
+  .profile-user-name {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar-img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .create-post-content textarea {
+    width: 250px;
+    font-size: 20px;
+  }
+
+  .profile-user-name {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 975px) {
   .navbar-title {
     margin-left: 0.5rem;
     font-size: 30px;
@@ -751,10 +808,10 @@ body {
     color: #fff;
   }
 
-  .form-group {
+  /* .form-group {
     height: 70px;
     margin: 3rem 0;
-  }
+  } */
 
   .icon {
     min-width: 50px;
@@ -762,13 +819,14 @@ body {
   }
 
   .input-field {
-    min-width: 300px;
+    min-width: 400px;
     font-size: 30px;
+    padding: 0 1rem;
   }
 
   .login-btns {
     display: flex;
-    width: 442px;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
   }
@@ -779,10 +837,55 @@ body {
     height: 62px;
     font-size: 30px;
   }
+}
 
-  .fb-btn {
+@media (max-width: 864px) {
+  .sidebar-img {
     width: 200px;
-    height: 80px;
+    height: 200px;
+  }
+
+  .create-post-content textarea {
+    width: 200px;
+    font-size: 17px;
+  }
+
+  .profile-user-name {
+    font-size: 40px;
+  }
+
+  .home-container {
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    min-height: 20vh;
+  }
+
+  .home .sidebar-img {
+    display: none;
+  }
+
+  .timeline,
+  .myposts {
+    padding: 2rem 1rem 4rem 3rem;
+  }
+
+  .create-post-content textarea {
+    width: 500px;
+    height: 300px;
+    font-size: 25px;
+  }
+
+  .sidebar-img {
+    height: 350px;
+    width: 350px;
+  }
+
+  .profile-user-name {
+    margin-top: 0;
+    font-size: 50px;
   }
 }
 
@@ -803,12 +906,12 @@ body {
   }
 
   .login-form {
-    max-width: 250px;
+    max-width: 350px;
   }
 
   .login-content,
   .register-content {
-    max-width: 250px;
+    max-width: 350px;
     margin: auto;
     min-height: 60vh;
   }
@@ -819,7 +922,7 @@ body {
 
   .form-group {
     height: 60px;
-    max-width: 250px;
+    max-width: 350px;
     margin: 3rem 0;
   }
 
@@ -828,7 +931,7 @@ body {
   }
 
   .input-field {
-    min-width: 250px;
+    min-width: 350px;
     height: 100%;
     margin: auto;
     font-size: 20px;
@@ -836,22 +939,23 @@ body {
 
   .login-btns {
     display: flex;
-    max-width: 250px;
+    max-width: 350px;
     flex-direction: column;
     margin: auto;
   }
 
   .btn-login,
   .btn-register {
-    width: 250px;
+    width: 350px;
     height: 62px;
     font-size: 30px;
   }
 
-  .fb-btn {
+  .btn-red {
     margin-top: 1rem;
-    width: 250px;
-    height: 80px;
+    width: 350px;
+    height: 62px;
+    font-size: 30px;
   }
 
   .register-title {
@@ -859,11 +963,327 @@ body {
   }
 
   .register-input {
-    width: 250px;
+    width: 350px;
     height: 60px;
   }
 
   .btn-register {
     margin-top: 1rem;
+  }
+
+  .timeline-title {
+    font-size: 35px;
+  }
+
+  .profile-form {
+    width: 90%;
+  }
+
+  .profile-field {
+    width: 100%;
+    height: 100%;
+  }
+
+  .bio-content {
+    min-width: 400px;
+    font-size: 20px;
+  }
+
+  .profile {
+    padding: 2rem 0 4rem 5rem;
+  }
+
+  .profile-input .input-field {
+    min-width: 400px;
+  }
+
+  .create-post-content textarea {
+    width: 400px;
+  }
+
+  .add-friend-description .post-date {
+    font-size: 14px;
+  }
+}
+
+/* iPhone */
+@media (max-width: 414px) {
+  .navbar-container {
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .navbar {
+    min-height: 130px;
+    min-width: 320px;
+  }
+
+  .navbar-title {
+    font-size: 30px;
+    margin-bottom: 1rem;
+    margin-left: 0;
+    text-align: center;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 0.3rem;
+    display: inline-block;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .login-form {
+    max-width: 280px;
+  }
+
+  .login-content,
+  .register-content {
+    max-width: 280px;
+  }
+
+  .form-group {
+    max-width: 280px;
+  }
+
+  .input-field {
+    min-width: 250px;
+  }
+
+  .login-btns {
+    max-width: 280px;
+  }
+
+  .btn-login,
+  .btn-register {
+    width: 280px;
+  }
+
+  .btn-red {
+    width: 280px;
+  }
+
+  .register-input {
+    width: 280px;
+  }
+
+  .timeline-title {
+    font-size: 25px;
+  }
+
+  .profile-form {
+    width: 90%;
+  }
+
+  .profile-field {
+    width: 100%;
+    height: 100%;
+  }
+
+  .bio-content {
+    min-width: 280px;
+    font-size: 20px;
+  }
+
+  .profile {
+    padding: 2rem 0 4rem 5rem;
+    margin: 0 auto;
+  }
+
+  .profile .profile-input .input-field {
+    min-width: 280px;
+  }
+
+  .home-container {
+    grid-template-rows: 1fr 5fr;
+  }
+
+  .sidebar {
+    min-width: 320px;
+    height: 450px;
+  }
+
+  .sidebar-img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .create-post-content textarea {
+    width: 250px;
+    height: 200px;
+    font-size: 15px;
+  }
+
+  .profile-user-name {
+    margin-top: 0;
+    font-size: 50px;
+  }
+
+  .link {
+    font-size: 16px;
+  }
+
+  .btn-primary {
+    width: 250px;
+    margin-left: 1rem;
+  }
+
+  .timeline,
+  .myposts {
+    padding: 2rem 1rem 4rem 1.3rem;
+    margin: 0 auto;
+  }
+
+  .profile {
+    padding: 2rem 0 4rem 0.2rem;
+    margin: 0 auto;
+  }
+
+  .post {
+    max-height: 600px;
+    width: 280px;
+  }
+
+  .post-top {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--primary);
+  }
+
+  .post-info {
+    display: flex;
+  }
+
+  .post-info-content {
+    margin-left: 1rem;
+  }
+
+  .profile-pic {
+    width: 55px;
+    height: 55px;
+  }
+
+  .post-author {
+    font-size: 20px;
+  }
+
+  .post-numbers {
+    display: flex;
+    align-items: center;
+  }
+
+  .post-date {
+    font-size: 15px;
+  }
+
+  .like-count {
+    margin-bottom: 0rem;
+  }
+
+  .like-count,
+  .comment-count {
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    margin-top: 1rem;
+  }
+
+  .like-count i,
+  .comment-count i {
+    font-size: 20px;
+  }
+
+  .like-count h4,
+  .comment-count h4 {
+    margin-left: 0.6rem;
+    font-size: 18px;
+  }
+
+  .post-content {
+    font-size: 20px;
+  }
+
+  .like-post i,
+  .comment-post i {
+    font-size: 25px;
+  }
+
+  .like-post h4,
+  .comment-post h4 {
+    font-size: 15px;
+  }
+
+  .no-posts {
+    font-size: 25px;
+  }
+
+  .add-friend-btn {
+    font-size: 18px;
+  }
+
+  .add-friend-description .post-author {
+    font-size: 18px;
+  }
+
+  .add-friend-description .post-date {
+    font-size: 14px;
+  }
+
+  .inputfile + label {
+    font-size: 15px;
+    padding: 1rem 1.5rem;
+  }
+
+  .post-container {
+    padding: 3rem 0 4rem 3rem;
+  }
+
+  .comment-form .input-field {
+    min-width: 280px;
+  }
+
+  .post-text {
+    max-width: 280px;
+    font-size: 20px;
+  }
+
+  .profile-bio {
+    font-size: 20px;
+    width: 80%;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .user-profile {
+    padding: 2rem 0 4rem 3rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .post-container {
+    padding: 3rem 0 4rem 1.5rem;
+  }
+
+  .comment-form .input-field {
+    min-width: 280px;
+  }
+
+  .post-text {
+    max-width: 280px;
+    font-size: 20px;
+  }
+
+  .profile-bio {
+    font-size: 15px;
+    width: 90%;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .user-profile {
+    padding: 2rem 0 4rem 1.2rem;
   }
 }

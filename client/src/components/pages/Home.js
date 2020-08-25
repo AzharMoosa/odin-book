@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <Fragment>
       {!loading && user !== null ? (
-        <div className='bg-light home-container'>
+        <div className='bg-light home-container home'>
           <Sidebar />
           <Timeline />
         </div>

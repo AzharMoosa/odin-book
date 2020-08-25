@@ -71,7 +71,7 @@ router.put("/:id", auth, async (req, res) => {
 
   const comment = {
     text,
-    user,
+    user: user._id,
     date: new Date(),
   };
 

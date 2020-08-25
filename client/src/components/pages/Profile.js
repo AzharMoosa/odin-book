@@ -8,7 +8,7 @@ import Spinner from "../layout/Spinner";
 const Profile = () => {
   const authContext = useContext(AuthContext);
   const userContext = useContext(UserContext);
-  const { user, getUser, loading } = userContext;
+  const { user, getUser, loading, updateUser } = userContext;
 
   useEffect(() => {
     authContext.loadUser();
@@ -21,10 +21,10 @@ const Profile = () => {
       {!loading && user !== null ? (
         <div className='bg-light home-container'>
           <div className='sidebar'>
-            <ProfilePicture />
+            <ProfilePicture user={user} loading={loading} />
             <h1 className='profile-user-name'>{!loading && user.name}</h1>
           </div>
-          <ProfileInfo />
+          <ProfileInfo user={user} loading={loading} updateUser={updateUser} />
         </div>
       ) : (
         <Spinner />

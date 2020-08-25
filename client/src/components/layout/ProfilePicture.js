@@ -1,15 +1,6 @@
-import React, { Fragment, useEffect, useContext } from "react";
-import UserContext from "../../context/user/userContext";
+import React, { Fragment } from "react";
 
-const ProfilePicture = () => {
-  const userContext = useContext(UserContext);
-  const { user, getUser } = userContext;
-
-  useEffect(() => {
-    getUser();
-    // eslint-disable-next-line
-  }, []);
-
+const ProfilePicture = ({ user }) => {
   const convertToBase64 = (u8) => {
     return btoa(String.fromCharCode.apply(null, u8));
   };
@@ -20,6 +11,7 @@ const ProfilePicture = () => {
         <img
           src={`data:image/png;base64,${convertToBase64(user.img.data.data)}`}
           alt='user-img'
+          className='sidebar-img'
         />
       )}
     </Fragment>

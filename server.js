@@ -1,5 +1,4 @@
 const express = require("express");
-const multer = require("multer");
 const usersRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postsRoute = require("./routes/posts");
@@ -10,9 +9,7 @@ const app = express();
 connectDB();
 
 // Inititalize Middleware
-app.use(
-  express.json({ extended: true, parameterLimit: 100000, limit: "50MB" })
-);
+app.use(express.json({ extended: true }));
 
 app.get("/", (req, res) => {
   res.json({
