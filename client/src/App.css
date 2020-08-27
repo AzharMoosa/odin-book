@@ -888,6 +888,10 @@ body {
     margin-top: 0;
     font-size: 50px;
   }
+
+  .post-author {
+    font-size: 25px;
+  }
 }
 
 /* Mobile Media Queries */
@@ -1079,6 +1083,10 @@ body {
   .profile-field {
     width: 100%;
     height: 100%;
+  }
+
+  .post-author {
+    font-size: 18px;
   }
 
   .bio-content {

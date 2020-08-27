@@ -41,7 +41,7 @@ const UserProfile = (props) => {
             <p className='profile-bio mt-2'>{current_user.bio}</p>
             <h3 className='timeline-title mt-3'>Posts</h3>
             {current_posts.map((post) => (
-              <PostContent key={post._id} postData={post} />
+              <PostContent key={post._id} postData={post} user={user} />
             ))}
           </div>
         </div>
